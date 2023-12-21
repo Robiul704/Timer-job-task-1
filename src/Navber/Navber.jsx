@@ -1,8 +1,21 @@
 
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Authentication/AuthPovider";
 
 const Navber = () => {
- 
+    const {user,Logout}=useContext(AuthContext)
+
+    const handlelogout=()=>{
+      Logout()
+     .then(result=>{
+        console.log(result)
+     })
+     .catch(err=>{
+        console.log(err)
+     })
+    }
+
     const links=<>
     <NavLink to={'/'} className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-blue-700 font-bold py-1 px-3" : " mr-3 hover:hover:text-red-700 font-bold py-1 px-3"
@@ -18,8 +31,8 @@ const Navber = () => {
   } to={'/blog'}>Blog</NavLink>
     </>
     return (
-        <div className="fixed container mx-auto z-50">
-            <div className="navbar bg-slate-100 border-b-4">
+        <div className="fixed container   mx-auto z-50">
+            <div className="navbar bg-blue-200 border-b-4">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -37,7 +50,15 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
-  <button className="btn btn-outline px-10 hover:bg-blue-800">Login</button>
+    {
+        user && <p>{user.displayName}</p>
+    }
+    {
+        user && <img className="h-12 w-12 rounded-full mr-5 ml-3" src={user.photoURL}></img>
+    }
+    {
+        user?  <button onClick={handlelogout} className="btn btn-outline px-10 hover:bg-blue-800">LogOut</button>: <Link to={'/login'}><button className="btn btn-outline px-10 hover:bg-blue-800">Login</button></Link>
+    }
   </div>
 </div>
         </div>

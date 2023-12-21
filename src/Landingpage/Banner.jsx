@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Banner = () => {
     return (
-        <div className="pt-10">
+        <div className="">
              <section
         className="relative min-h-screen text-start bg-[url(https://i.ibb.co/kyTsHSY/task-management-concept-banner-header-vector-24529046.jpg)] bg-cover bg-center bg-no-repeat"
       >

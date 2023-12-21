@@ -8,6 +8,10 @@ import "./index.css";
 import Root from "./Root";
 import Home from "./Landingpage/Home";
 import Dashboard from "./Dashboard/Dashboard";
+import Login from "./Authentication/Login";
+import AuthPovider from "./Authentication/AuthPovider";
+import Resister from "./Authentication/Resister";
+// import Resister from "./Authentication/Resister";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/login',
-        element:<login
+        element:<Login></Login>
+      },
+      {
+        path:'/Resister',
+        element:<Resister></Resister>
       },
       {
         path:'dashboard',
@@ -32,6 +40,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+   <AuthPovider>
+   <RouterProvider router={router} />
+   </AuthPovider>
   </React.StrictMode>
 );
