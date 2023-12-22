@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "./AuthPovider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import Swal from "sweetalert2";
 const image_hosting_key='6fbc3358bbb1a92b78e2dee0f5ca1b94'
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const Resister = () => {
@@ -33,6 +34,13 @@ CreateUser(email,password)
     console.log(result)
     UpdateProfile(name,photoURL)
     .then(res=>{
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Resister Successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
         console.log(res)
     })
 })
@@ -43,6 +51,13 @@ CreateUser(email,password)
          const handlegoogle=()=>{
       googlelogin()
       .then(result=>{
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Resister Successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
         navigate(location.state? location.state : '/')
           console.log(result)
       })
@@ -52,6 +67,13 @@ CreateUser(email,password)
         
         githublogin()
         .then(result=>{
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Resister Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
           navigate(location.state? location.state : '/')
             console.log(result)
         })

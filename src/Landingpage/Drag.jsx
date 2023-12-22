@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UseToDo from "../useaxios/UseToDo";
 import UseOnGoing from "../useaxios/UseOnGoing";
 import UseComplite from "../useaxios/UseComplite";
 import UseAxiosPublic from "../useaxios/UseAxiosPublic";
-
-
+import { RiDeleteBack2Line, RiDeleteBin5Line } from "react-icons/ri";
+import Swal from 'sweetalert2'
+import Aos from "aos";
+import 'aos/dist/aos.css'
 const Drag = () => {
 
     const [todo,refetch]=UseToDo()
@@ -108,6 +110,89 @@ const Drag = () => {
         })
     }
     //------------------------------------------------
+
+
+    const handledelete1=(id)=>{
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                AxiosPublic.delete(`todo/${id}`)
+        .then(res=>{
+            refetch()
+            console.log(res.data)
+        })
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+       
+    }
+    const handledelete2=(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                AxiosPublic.delete(`ongoing/${id}`)
+        .then(res=>{
+            refetch()
+            console.log(res.data)
+        })
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+       
+    }
+    const handledelete3=(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                AxiosPublic.delete(`complite/${id}`)
+        .then(res=>{
+            refetch()
+            console.log(res.data)
+        })
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+       
+    }
+
+    useEffect(()=>{
+        Aos.init({duration:1000});
+    },[])
     return (
         <div className="grid md:grid-cols-2 mt-20 lg:grid-cols-3 gap-1 mb-10">
            <div className={targetclassname}>
@@ -116,33 +201,38 @@ const Drag = () => {
                 {
                     todo.map(item=>{
                         return(
-                            <li key={item._id}  id={item._id} className="bg-white border border-indigo-300 p-2 mb-2 cursor-move" onDragStart={handledragstart} draggable={true}>
+                            <li key={item._id} data-aos="flip-up"  id={item._id} className="bg-white border border-indigo-300 p-2 mb-2 cursor-move" onDragStart={handledragstart} draggable={true}>
                                 
                                 <article 
                     className="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
                   >
+                     <div className="text-center text-2xl">
+                            <button onClick={()=>handledelete1(item._id)}><RiDeleteBin5Line /></button>
+                    </div>
                     <div className="rounded-[10px] bg-white   sm:p-6">
                   
-                      <a href="#">
-                        <h3 className=" text-lg font-medium text-gray-900">
-                         {item.title} 
-                        </h3>
-                      <div className="grid gap-2 lg:grid-cols-2 ">
-                      <span
-                          className="whitespace-nowrap rounded-full bg-purple-100 px-2 py-1 text-xs text-purple-600"
-                        >
-                          Deadline {item.deadline} days
-                        </span>
-                  
-                        <span
-                          className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
-                        >
-                          Priority {item.priority}
-                        </span>
-                      </div>
-                      </a>
-                      <p>{item.description}</p>
-                    </div>
+                  <a href="#">
+                    <h3 className=" text-lg font-medium text-gray-900">
+                     {item.title} 
+                    </h3>
+                  <div className="grid gap-2 lg:grid-cols-2 ">
+                  <span
+                      className="whitespace-nowrap rounded-full bg-purple-100 px-2 py-1 text-xs text-purple-600"
+                    >
+                      Deadline {item.deadline} days
+                    </span>
+              
+                    <span
+                      className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
+                    >
+                      Priority {item.priority}
+                    </span>
+                  </div>
+                  </a>
+                  <p>{item.description}</p>
+                </div>
+                   
+
                   </article>
                                 </li>
                         )
@@ -156,7 +246,7 @@ const Drag = () => {
             {
                 ongoing.map(item=>{
                     return (
-                        <li
+                        <li data-aos="flip-up"
                          className="bg-white border border-indigo-300 p-4 mb-2 cursor-move"
                         key={item.id}
                         id={item.id}
@@ -166,6 +256,9 @@ const Drag = () => {
                             <article 
                     className="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
                   >
+                    <div className="text-center text-2xl">
+                            <button onClick={()=>handledelete2(item._id)}><RiDeleteBin5Line /></button>
+                    </div>
                     <div className="rounded-[10px] bg-white   sm:p-6">
                   
                       <a href="#">
@@ -201,7 +294,7 @@ const Drag = () => {
             {
                 complite.map(item=>{
                     return (
-                        <li className="bg-white border border-indigo-300 p-4 mb-2 cursor-move"
+                        <li data-aos="flip-up" className="bg-white border border-indigo-300 p-4 mb-2 cursor-move"
                         key={item._id}
                         id={item._id}
                         draggable={true}
@@ -209,6 +302,9 @@ const Drag = () => {
                         ><article 
                         className="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
                       >
+                        <div className="text-center text-2xl">
+                            <button onClick={()=>handledelete3(item._id)}><RiDeleteBin5Line /></button>
+                    </div>
                         <div className="rounded-[10px] bg-white   sm:p-6">
                       
                           <a href="#">

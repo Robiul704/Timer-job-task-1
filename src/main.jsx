@@ -21,6 +21,8 @@ import {
 } from '@tanstack/react-query'
 import PrivateRoute from "./Authentication/PrivateRoute";
 import Drag from "./Landingpage/Drag";
+import Gallery from "./Navber/Gallery";
+import Reviews from "./Navber/Reviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,8 +37,12 @@ const router = createBrowserRouter([
         element:<Login></Login>
       },
       {
-        path:'/Resister',
-        element:<Resister></Resister>
+        path:'/gallery',
+        element:<Gallery></Gallery>
+      },
+      {
+        path:'/review',
+        element:<Reviews></Reviews>
       },
       {
         path:'dashboard',

@@ -1,6 +1,7 @@
 import {  useForm } from 'react-hook-form';
 import UseAxiosPublic from '../useaxios/UseAxiosPublic';
 import UseToDo from '../useaxios/UseToDo';
+import Swal from 'sweetalert2';
 
 const CreateTask = () => {
     const AxiosPublic=UseAxiosPublic()
@@ -21,19 +22,26 @@ const CreateTask = () => {
         console.log(id)
         console.log(title,deadline,priority,description)
         const body={title,deadline,priority,description}
-
         AxiosPublic.post('/todo',body)
         .then(res=>{
+           
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Task Create Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
             console.log(res.data)
         })
       }
       
     return (
-        <div className="bg-amber-200 pt-20 h-full w-full">
+        <div className="bg-amber-100 pt-20 h-full w-full">
             <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="grid grid-cols-4 gap-6 p-6 items-center rounded-md shadow-sm dark:bg-gray-900">
 			<div className="space-y-2 col-span-full lg:col-span-1">
-				<p className="font-medium">Create A Task</p>
+				<p className="font-medium text-2xl">Create A Task</p>
 				<p className="text-xs"></p>
 			</div>
 			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
@@ -76,9 +84,10 @@ const CreateTask = () => {
 					<textarea {...register('description',{ required: true })} id="bio" placeholder="Type Here" className="w-full rounded-md p-3 focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"></textarea>
                     {errors.description && <span className="text-red-900"> name is required</span>}
 				</div>
+                <button className='btn btn-outline bg-gray-300 text-black mx-auto text-center'>Submit</button>
 				
 			</div>
-            <button className='btn btn-outline bg-gray-300 text-black mx-auto text-center'>Submit</button>
+            
 		</fieldset>
             </form>
         </div>

@@ -2,15 +2,15 @@
 import { useContext } from "react";
 import { Form, Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthPovider";
-
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const location=useLocation()
     const navigate=useNavigate()
     const {
-        CreateUser,
-        loading,
         googlelogin,
+        githublogin,
         Login}=useContext(AuthContext)
 
         
@@ -22,6 +22,13 @@ const Login = () => {
         Login(email,password)
         .then(res=>{
             navigate(location.state? location.state : '/')
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Login Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
             console.log(res)
         })
         .catch(err=>console.log(err))
@@ -30,11 +37,33 @@ const Login = () => {
           const handlegoogle=()=>{
             googlelogin()
             .then(result=>{
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 navigate(location.state? location.state : '/')
                 console.log(result)
             })
         
           }
+          const handlegithub=()=>{
+        
+            githublogin()
+            .then(result=>{
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+              navigate(location.state? location.state : '/')
+                console.log(result)
+            })
+        }
 
     return (
         <div>
@@ -76,7 +105,10 @@ const Login = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>
        <span > have not an Account please <span className="text-blue underline"><Link to='/resister'>Resister</Link></span></span>
-       <button  onClick={handlegoogle} className="btn btn-primary hover:bg-red-200 text-black font-bold bg-yellow-200 my-5">Google</button>
+       <div className="flex gap-5 text-black justify-center items-center">
+     <button onClick={handlegoogle} className="text-4xl "  ><FaGoogle /></button>
+       <button className="text-4xl "  onClick={handlegithub}><FaGithub /></button>
+     </div>
         </div>
       </Form>
   <p className="flex text-white  justify-center mt-6 font-sans text-sm antialiased font-light leading-normal">

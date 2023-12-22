@@ -1,15 +1,18 @@
 
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authentication/AuthPovider";
 
 const Navber = () => {
     const {user,Logout}=useContext(AuthContext)
+    const navigate=useNavigate()
+    const location=useLocation()
 
     const handlelogout=()=>{
       Logout()
      .then(result=>{
         console.log(result)
+        navigate(location.state? location.state : '/')
      })
      .catch(err=>{
         console.log(err)
@@ -22,10 +25,10 @@ const Navber = () => {
   }>Home</NavLink>
     <NavLink className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-blue-700 font-bold py-1 px-3 mr-3" : " mr-3 hover:hover:text-red-700 font-bold py-1 px-3"
-  } to={'/features'}>Features</NavLink>
+  } to={'/gallery'}>Gallery</NavLink>
     <NavLink className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-blue-700 font-bold py-1 px-3 mr-3" : " mr-3 hover:hover:text-red-700 font-bold py-1 px-3"
-  } to={'/members'}>Members</NavLink>
+  } to={'/review'}>Reviews</NavLink>
     <NavLink className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-blue-700 font-bold py-1 px-3 mr-3" : " mr-3 hover:hover:text-red-700 font-bold py-1 px-3"
   } to={'/blog'}>Blog</NavLink>

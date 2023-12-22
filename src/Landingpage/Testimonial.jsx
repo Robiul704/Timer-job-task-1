@@ -1,7 +1,11 @@
 
-
+import Aos from "aos";
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 const Testimonial = () => {
-    
+    useEffect(()=>{
+        Aos.init({duration:1000});
+    },[])
     return (
         <div>
             <section className="bg-gray-50">
@@ -54,7 +58,7 @@ const Testimonial = () => {
 
     <div className="-mx-6  mt-8 lg:col-span-2 lg:mx-0">
       <div id="keen-slider" className="keen-slider">
-        <div className="keen-slider__slide">
+        <div data-aos="fade-up" className="keen-slider__slide">
           <blockquote
             className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12"
           >
@@ -130,7 +134,7 @@ Collaborate with like-minded individuals, share your knowledge, and stay updated
           </blockquote>
         </div>
 
-        <div className="keen-slider__slide">
+        <div data-aos="fade-up" className="keen-slider__slide">
           <blockquote
             className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12"
           >
@@ -205,7 +209,7 @@ Collaborate with like-minded individuals, share your knowledge, and stay updated
           </blockquote>
         </div>
 
-        <div className="keen-slider__slide">
+        <div data-aos="fade-up" className="keen-slider__slide">
           <blockquote
             className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12"
           >

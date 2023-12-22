@@ -1,12 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { IoMdCreate } from "react-icons/io";
 import { MdOutlineDoneAll } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication/AuthPovider";
 const Dashboard = () => {
+    const {user}=useContext(AuthContext)
     return (
         <div className="fixed   z-50 top-16">
             <div className="flex  flex-col p-10 h-[520px]  bg-green-100  w-full dark:bg-gray-900 dark:text-gray-100">
 	<div className="space-y-3">
+    {
+        user && <img className="h-12 w-12 rounded-full mr-5 ml-3" src={user.photoURL}></img>
+    }
 		<div className="flex items-center justify-between">
+        
 			<h2>Dashboard</h2>
 			<button className="p-2">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current dark:text-gray-100">

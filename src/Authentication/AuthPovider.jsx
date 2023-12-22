@@ -5,7 +5,7 @@ import { GithubAuthProvider } from "firebase/auth";
 export const AuthContext=createContext()
 const AuthPovider = ({children}) => {
     const [user,setUser]=useState()
-    const [loading,setLoading]=useState()
+    const [loading,setLoading]=useState(true)
 
     const CreateUser=(email,password)=>{
         setLoading(true)
