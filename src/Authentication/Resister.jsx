@@ -2,14 +2,16 @@ import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../useaxios/UseAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "./AuthPovider";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 const image_hosting_key='6fbc3358bbb1a92b78e2dee0f5ca1b94'
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const Resister = () => {
+    const location=useLocation()
+    const navigate=useNavigate()
   
   const {register,handleSubmit,formState: { errors }, } = useForm();
-  const { CreateUser,UpdateProfile,googlelogin,}=useContext(AuthContext)
+  const { CreateUser,UpdateProfile,googlelogin,githublogin}=useContext(AuthContext)
   const AxiosPublic=UseAxiosPublic()
  
 const onSubmit=async (data)=>{
@@ -27,6 +29,7 @@ console.log(name,email,password,photoURL)
 
 CreateUser(email,password)
 .then(result=>{
+    navigate(location.state? location.state : '/')
     console.log(result)
     UpdateProfile(name,photoURL)
     .then(res=>{
@@ -40,9 +43,18 @@ CreateUser(email,password)
          const handlegoogle=()=>{
       googlelogin()
       .then(result=>{
+        navigate(location.state? location.state : '/')
           console.log(result)
       })
   
+    }
+    const handlegithub=()=>{
+        
+        githublogin()
+        .then(result=>{
+          navigate(location.state? location.state : '/')
+            console.log(result)
+        })
     }
 
   
@@ -105,7 +117,11 @@ CreateUser(email,password)
         <div className="form-control mt-6">
           <button className="btn btn-primary">Sign up</button>
        <span > You have an Account please <span className="text-blue underline"><Link to='/login'>Login</Link></span></span>
-       <button  onClick={handlegoogle} className="btn btn-primary hover:bg-red-200 text-black font-bold bg-yellow-200 my-5">Google</button>
+     <div className="flex gap-5 text-yellow justify-center items-center">
+     <button onClick={handlegoogle} className="text-4xl "  ><FaGoogle /></button>
+       <button className="text-4xl "  onClick={handlegithub}><FaGithub /></button>
+     </div>
+       
         </div>
       </form>
     <div className="-ml-2.5">

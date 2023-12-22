@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Banner = () => {
     return (
-        <div className="">
+        <div className="pt-10">
              <section
         className="relative min-h-screen text-start bg-[url(https://i.ibb.co/kyTsHSY/task-management-concept-banner-header-vector-24529046.jpg)] bg-cover bg-center bg-no-repeat"
       >
@@ -27,7 +27,7 @@ Efficiently
             </p>
       
             <div className="mt-8 flex flex-wrap gap-4 text-center">
-              <NavLink to={'dashboard'}
+              <NavLink to={'dashboard/createtask'}
                 href="#"
                 className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
               >

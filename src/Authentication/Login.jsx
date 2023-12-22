@@ -1,13 +1,16 @@
 
 import { useContext } from "react";
-import { Form, Link, NavLink } from "react-router-dom";
+import { Form, Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthPovider";
 
 
 const Login = () => {
+    const location=useLocation()
+    const navigate=useNavigate()
     const {
         CreateUser,
         loading,
+        googlelogin,
         Login}=useContext(AuthContext)
 
         
@@ -17,8 +20,20 @@ const Login = () => {
         const password=e.target.password.value
         console.log(email,password)
         Login(email,password)
-        .then(res=>console.log(res))
+        .then(res=>{
+            navigate(location.state? location.state : '/')
+            console.log(res)
+        })
         .catch(err=>console.log(err))
+          }
+
+          const handlegoogle=()=>{
+            googlelogin()
+            .then(result=>{
+                navigate(location.state? location.state : '/')
+                console.log(result)
+            })
+        
           }
 
     return (
@@ -61,7 +76,7 @@ const Login = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>
        <span > have not an Account please <span className="text-blue underline"><Link to='/resister'>Resister</Link></span></span>
-          <button  className="btn btn-primary hover:bg-red-200 text-black font-bold bg-yellow-200 my-5">Google</button>
+       <button  onClick={handlegoogle} className="btn btn-primary hover:bg-red-200 text-black font-bold bg-yellow-200 my-5">Google</button>
         </div>
       </Form>
   <p className="flex text-white  justify-center mt-6 font-sans text-sm antialiased font-light leading-normal">
