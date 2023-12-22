@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDpsHmoF1_qkPNGthq7QzC7kOX-ce5A1GU",
-  authDomain: "sports-events-c37b9.firebaseapp.com",
-  projectId: "sports-events-c37b9",
-  storageBucket: "sports-events-c37b9.appspot.com",
-  messagingSenderId: "30047919735",
-  appId: "1:30047919735:web:0a6183a723b34b73e87072"
+  apiKey: "AIzaSyAseXEPj5UBIu68WsiieoFhSEaIDgP6PW4",
+  authDomain: "dragon-news-e137e.firebaseapp.com",
+  projectId: "dragon-news-e137e",
+  storageBucket: "dragon-news-e137e.appspot.com",
+  messagingSenderId: "182555489705",
+  appId: "1:182555489705:web:2f90640c6abe23be10c0b8"
 };
 
 // Initialize Firebase

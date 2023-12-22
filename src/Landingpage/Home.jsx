@@ -1,4 +1,6 @@
 import CreateTask from "../Dashboard/CreateTask";
+import Gallery from "../Navber/Gallery";
+import Reviews from "../Navber/Reviews";
 import Banner from "./Banner";
 import Drag from "./Drag";
 import DragCard from "./DragCard";
@@ -10,6 +12,8 @@ const Home = () => {
         <div className="container mx-auto">
             <Banner></Banner>
             <Testimonial></Testimonial>
+            <Gallery></Gallery>
+            <Reviews></Reviews>
         </div>
     );
 };

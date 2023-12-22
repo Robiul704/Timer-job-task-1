@@ -7,7 +7,6 @@ import {
 import "./index.css";
 import Root from "./Root";
 import Home from "./Landingpage/Home";
-import Dashboard from "./Dashboard/Dashboard";
 import Login from "./Authentication/Login";
 import AuthPovider from "./Authentication/AuthPovider";
 import Resister from "./Authentication/Resister";
@@ -23,6 +22,7 @@ import PrivateRoute from "./Authentication/PrivateRoute";
 import Drag from "./Landingpage/Drag";
 import Gallery from "./Navber/Gallery";
 import Reviews from "./Navber/Reviews";
+import Testimonial from "./Landingpage/Testimonial";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,12 +37,20 @@ const router = createBrowserRouter([
         element:<Login></Login>
       },
       {
+        path:'/resister',
+        element:<Resister></Resister>
+      },
+      {
         path:'/gallery',
-        element:<Gallery></Gallery>
+        element:<PrivateRoute><Gallery></Gallery></PrivateRoute>
       },
       {
         path:'/review',
-        element:<Reviews></Reviews>
+        element:<PrivateRoute><Reviews></Reviews></PrivateRoute>
+      },
+      {
+        path:'/learn',
+        element:<PrivateRoute><Testimonial></Testimonial></PrivateRoute>
       },
       {
         path:'dashboard',

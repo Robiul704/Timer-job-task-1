@@ -139,7 +139,7 @@ CreateUser(email,password)
         <div className="form-control mt-6">
           <button className="btn btn-primary">Sign up</button>
        <span > You have an Account please <span className="text-blue underline"><Link to='/login'>Login</Link></span></span>
-     <div className="flex gap-5 text-yellow justify-center items-center">
+     <div className="flex gap-5 text-black justify-center items-center">
      <button onClick={handlegoogle} className="text-4xl "  ><FaGoogle /></button>
        <button className="text-4xl "  onClick={handlegithub}><FaGithub /></button>
      </div>

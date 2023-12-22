@@ -31,7 +31,7 @@ const Navber = () => {
   } to={'/review'}>Reviews</NavLink>
     <NavLink className={({ isActive, isPending }) =>
     isPending ? "pending" : isActive ? "text-blue-700 font-bold py-1 px-3 mr-3" : " mr-3 hover:hover:text-red-700 font-bold py-1 px-3"
-  } to={'/blog'}>Blog</NavLink>
+  } to={'/learn'}>Learn more</NavLink>
     </>
     return (
         <div className="fixed container   mx-auto z-50">

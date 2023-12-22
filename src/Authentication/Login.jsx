@@ -113,7 +113,7 @@ const Login = () => {
       </Form>
   <p className="flex text-white  justify-center mt-6 font-sans text-sm antialiased font-light leading-normal">
       Don't have an account?
-    <NavLink to={'/Resister'}>Sign Up</NavLink>
+    <NavLink to={'/resister'}>Sign Up</NavLink>
     </p>
 </div>
         </div>
